@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { atom, useRecoilState, useSetRecoilState } from "recoil";
+import { atom, useRecoilState } from "recoil";
 import { Grid, TextField, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paho from "paho-mqtt";
 
-// Selected vessel profile
-export const atomSelectedOwnShipDatSource = atom({
-  key: "selected_own_ship_data_source",
-  default: null,
+export const atomOwnShipData = atom({
+  key: "own_ship_data",
+  default: {
+    externalTimestamp: "2020",
+    sog: 0,
+    cog: 0,
+    heading: 0,
+    latitude: 0,
+    longitude: 0,
+    draught: 0,
+    destination: "",
+    navStatus: 0,
+  },
 });
 
 // Selected vessel profile
@@ -23,21 +32,6 @@ export const atomSelectedVesselModel = atom({
     vessel_type: "Unknown",
     dwt: 4000,
     gt: 2000,
-  },
-});
-
-export const atomOwnShipData = atom({
-  key: "own_ship_data",
-  default: {
-    externalTimestamp: "2020",
-    sog: 0,
-    cog: 0,
-    heading: 0,
-    latitude: 0,
-    longitude: 0,
-    draught: 0,
-    destination: "",
-    navStatus: 0,
   },
 });
 
@@ -60,11 +54,10 @@ const Input = styled("input")({
 });
 
 export default function VesselPicker() {
-  const [vesselModel, setVesselModel] = useRecoilState(atomSelectedVesselModel);
-  const setOwnShipDataSource = useSetRecoilState(atomSelectedOwnShipDatSource);
-  const [ownShipData, setOwnShipData] = useRecoilState(atomOwnShipData);
   const [client, setClient] = useState(null);
   const [isAISConnectionOpen, setIsAISConnectionOpen] = useState(false);
+  const [ownShipData, setOwnShipData] = useRecoilState(atomOwnShipData);
+  const [vesselModel, setVesselModel] = useRecoilState(atomSelectedVesselModel);
 
   const setMMSI = (event) => {
     console.log(event.target.value);
@@ -72,7 +65,6 @@ export default function VesselPicker() {
   };
 
   const connectAIS = () => {
-    setOwnShipDataSource("ais");
     setIsAISConnectionOpen(true);
   };
 
@@ -85,7 +77,9 @@ export default function VesselPicker() {
   const clientChanged = () => {
     if (client === null) {
       console.log("client is null");
-      setClient(new Paho.Client("ws://broker.mo.ri.se/:443", "muppet" + Math.random()));
+      setClient(
+        new Paho.Client("ws://broker.mo.ri.se/:443", "muppet" + Math.random())
+      );
     } else {
       client.onConnectionLost = (response) => {
         console.log(Date.now() + " Connection lost:" + response.errorMessage);
@@ -98,8 +92,11 @@ export default function VesselPicker() {
         if (shipData.imo_num === 9606900) {
           console.log("DATA", shipData);
 
-          let timeAtShip = new Date(shipData.timestamp * 1000)
-          let timeAtShipp = timeAtShip.toISOString().split('T')[1].split('.')[0]
+          let timeAtShip = new Date(shipData.timestamp * 1000);
+          let timeAtShipp = timeAtShip
+            .toISOString()
+            .split("T")[1]
+            .split(".")[0];
 
           setOwnShipData({
             ...ownShipData,
@@ -161,7 +158,12 @@ export default function VesselPicker() {
       <Grid item xs={4} sx={{ display: "grid", placeItems: "center" }}>
         <h3>Log file</h3>
         <label htmlFor="contained-button-file">
-          <Input accept="image/*" id="contained-button-file" multiple type="file" />
+          <Input
+            accept="image/*"
+            id="contained-button-file"
+            multiple
+            type="file"
+          />
           <Button variant="contained" component="span">
             Upload
           </Button>

@@ -21,7 +21,6 @@ export default function Ecdis() {
       </Grid>
       <Grid item xs={2} sx={{ display: "grid", placeItems: "center", position: 'relative', height: '93vh'}} >
         <StatusSideBar/>
-     
       </Grid>
     </Grid>
   );
