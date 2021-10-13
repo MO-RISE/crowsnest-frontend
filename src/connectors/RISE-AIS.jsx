@@ -19,6 +19,10 @@ export const atomRiseAisTargetList = atom({
   default: [],
 });
 
+
+
+
+
 export default function RiseAIS() {
   const [client, setClient] = useState(null);
   const setAisTargetList = useSetRecoilState(atomRiseAisTargetList);
@@ -56,12 +60,7 @@ export default function RiseAIS() {
         const shipData = JSON.parse(content);
         // console.log("AIS:", shipData);
 
-        test = {
-          ...test,
-          [shipData.mmsi]: shipData,
-        };
-
-        setAisTargetList(test);
+     
 
         if (shipData.imo_num === 9606900) {
           let timeAtShip = new Date(shipData.timestamp * 1000);
@@ -88,7 +87,18 @@ export default function RiseAIS() {
             beam: shipData.b,
             loa: shipData.l,
           });
+        } 
+        else if (shipData.lat < 60 & shipData.lat > 56 & shipData.lon > 10 & shipData.lon < 16){
+          test = {
+            ...test,
+            [shipData.mmsi]: shipData,
+          };
+  
+          setAisTargetList(test);
         }
+
+        
+
       };
 
       const connectionProperties = {

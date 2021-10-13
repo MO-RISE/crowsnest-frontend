@@ -98,8 +98,11 @@ export default function SeaChart() {
   const [viewstate, setViewState] = useState({
     latitude: 57.65271,
     longitude: 12.00188,
-    zoom: 17,
+    zoom: 15,
     pitch: 0,
+    bearing: 0,
+    maxPitch: 90,
+    minPitch: 0,
   });
 
   // Generate GeoJSON objects for each of the vessel targets.
@@ -167,16 +170,8 @@ export default function SeaChart() {
     </DeckGL>
   );
 }
-/*
-import React from "react";
-import DeckGL from "@deck.gl/react";
-import { PointCloudLayer } from "@deck.gl/layers";
-import { StaticMap } from "react-map-gl";
-import { MapView, COORDINATE_SYSTEM } from "@deck.gl/core";
 
-// Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1IjoieXlkZGVldHQiLCJhIjoiY2t0dng2dDhhMHhvZDJxcW5idXJucHN5YSJ9.6JmMY8r6_xyg4MaF8twdIg";
+/*
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -188,12 +183,6 @@ const INITIAL_VIEW_STATE = {
   maxPitch: 90,
   minPitch: 0,
 };
-
-const dataPointCloud = [
-  { position: [0, 0, 0],   position: [0, 0, 0],},
-  { position: [50, 0, 0] },
-  { position: [0, -100, 5] },
-];
 
 export default function ChartArea() {
   const pointCloudLayers = new PointCloudLayer({

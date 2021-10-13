@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import StatusSideBar from "./components/statusSideBar";
 import SeaChart from "./components/SeaChart";
 import TopBar from "./components/topBar";
+
 export default function Ecdis() {
   useEffect(() => {
     console.log("Humm...");

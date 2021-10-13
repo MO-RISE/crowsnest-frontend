@@ -48,11 +48,11 @@ export default function RiseLIDAR() {
         }
         const content = message.payloadString;
         const lidarData = JSON.parse(content);
-        // console.log("Data", lidarData);
+        console.log("Data", lidarData);
         // console.log("Points", lidarData.points);
-        // console.log("Origin", lidarData.position.coordinates);
+        // console.log("Origin", lidarData.origin.coordinates);
         setLidarPoints(lidarData.points);
-        setLidarOrigin(lidarData.position.coordinates);
+        setLidarOrigin(lidarData.origin.coordinates);
       };
 
       const connectionProperties = {

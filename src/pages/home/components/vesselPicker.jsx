@@ -35,18 +35,7 @@ export const atomSelectedVesselModel = atom({
   },
 });
 
-/* TODO: removed if unused
-const tryDisconnecting = (client) => {
-  if (client !== null) {
-    try {
-      console.log("Disconnecting...");
-      client.disconnect();
-    } catch (error) {
-      // Do nothing, client is already disconnected.
-    }
-  }
-};
-*/
+
 
 // Component styling
 const Input = styled("input")({
