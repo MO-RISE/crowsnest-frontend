@@ -15,6 +15,7 @@ import EdgesensorHighIcon from "@mui/icons-material/EdgesensorHigh"
 import SettingsIcon from "@mui/icons-material/Settings"
 import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat"
 import RouteIcon from "@mui/icons-material/Route"
+import FenceIcon from "@mui/icons-material/Fence"
 
 export default function LeftDrawer(props) {
   return (
@@ -76,12 +77,18 @@ export default function LeftDrawer(props) {
           <ListItemText primary={"Lookout 360"} />
         </ListItemButton>
 
-
         <ListItemButton key={"remoteControl"} component={Link} to={ROUTES.REMOTE_CONTROL}>
           <ListItemIcon>
             <SportsEsportsRoundedIcon />
           </ListItemIcon>
           <ListItemText primary={"Remote Control"} />
+        </ListItemButton>
+
+        <ListItemButton key={"virtual_wire"} component={Link} to={ROUTES.VIRTUAL_WIRE}>
+          <ListItemIcon>
+            <FenceIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Virtual Wire"} />
         </ListItemButton>
 
         <ListItemButton key={"route_editor"} component={Link} to={ROUTES.ROUTE_EDITOR}>

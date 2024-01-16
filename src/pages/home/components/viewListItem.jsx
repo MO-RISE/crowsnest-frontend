@@ -20,10 +20,10 @@ export default function viewListItem(props) {
           width: "95%",
           maxWidth: "350px",
           margin: "0.5rem",
-          color: theme.palette.info.main,
+          color: theme.palette.primary.main,
           display: "flex",
           justifyContent: "flex-start",
-          borderColor: theme.palette.info.main,
+          borderColor: theme.palette.primary.main,
         }}
       >
         {props.icon}
