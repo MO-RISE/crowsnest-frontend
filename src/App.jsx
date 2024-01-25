@@ -177,7 +177,7 @@ export default function App() {
 
   return (
     <>
-      <DeviceConnection />
+      {/* <DeviceConnection /> */}
 
       <ThemeProvider theme={theme}>
         <CssBaseline />
