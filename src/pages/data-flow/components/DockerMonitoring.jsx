@@ -8,13 +8,13 @@ import TableDocker from "./TableDocker"
 
 /* eslint-disable */
 const URLdockers = [
-  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ : "http://localhost:8000") +
+  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +
     "/rise/seahorse/docker-sdk/sh-1/docker/id",
-  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ : "http://localhost:8000") +
+  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +
     "/rise/masslab/docker-sdk/masslab-3/docker/id",
-  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ : "http://localhost:8000") +
+  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +
     "/rise/masslab/docker-sdk/masslab-4/docker/id",
-  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL_ : "http://localhost:8000") +
+  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +
     "/rise/masslab/docker-sdk/ted/docker/id",
 ]
 /* eslint-enable */

@@ -751,6 +751,8 @@ export const selSetRudder = selector({
       value: newRudderVal.setAngle + 0.0,
     }
 
+    console.log(dataToSend);
+
     var errMsg = PrimitivesTimeFloat.verify(dataToSend)
     if (errMsg) throw Error(errMsg)
     const payloadOne = PrimitivesTimeFloat.create(dataToSend)
@@ -769,7 +771,10 @@ export const selSetRudder = selector({
     const message = Envelope.encode(messStart).finish()
 
     var Http = new XMLHttpRequest()
-    Http.open("PUT", "http://localhost:8000/rise/crowsnest/gui/demo-user/rudder_order_deg/rudder_0", true)
+    // eslint-disable-next-line no-undef
+    console.log("PUT", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL + "/rise/v0/rc_boat/rpc/rudder/combi/set_rudder_angle_pct")
+    
+    Http.open("POST", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL + "/rise/v0/rc_boat/rpc/rudder/*/set_rudder_angle_pct", true)
     Http.setRequestHeader("Content-Type", "application/octet-stream")
     Http.send(message)
 
@@ -816,7 +821,8 @@ export const selSetEngine = selector({
     const message = Envelope.encode(messStart).finish()
 
     var Http = new XMLHttpRequest()
-    Http.open("PUT", "http://localhost:8000/rise/crowsnest/gui/demo-user/engine_power_set/engine_0", true)
+    // eslint-disable-next-line no-undef
+    Http.open("PUT", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL +"/rise/crowsnest/gui/demo-user/engine_power_set/engine_0", true)
     Http.setRequestHeader("Content-Type", "application/octet-stream")
     Http.send(message)
 

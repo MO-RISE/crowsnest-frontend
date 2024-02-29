@@ -63,7 +63,7 @@ export default function index() {
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
-              <Tab label="Shaft" value={"shaft"} />
+              <Tab label="RC Shaft" value={"shaft"} />
               <Tab label="Azimuth" value={"azimuth"} />
               <Tab label="Experiment (New)" value={"new"} />
               <Tab label="Experiment (Sliders)" value={"sliders"} />
@@ -81,6 +81,7 @@ export default function index() {
           <CustomTabPanel value={tabValue} index={"sliders"}>
             <TabViewExperimentSliders />
           </CustomTabPanel>
+        
         </Box>
       </Grid>
       <Grid item xs={12}>

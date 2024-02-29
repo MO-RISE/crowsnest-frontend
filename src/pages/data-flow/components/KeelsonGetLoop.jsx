@@ -23,12 +23,14 @@ export default function KeelsonGetLoop() {
   const initFormValuesManual = {
     // username: process.env.REACT_APP_MQTT_USERNAME ? process.env.REACT_APP_MQTT_USERNAME : "",
     // password: process.env.REACT_APP_MQTT_PASSWORD ? process.env.REACT_APP_MQTT_PASSWORD : "",
-    hostLoop: "http://localhost:8000",
-    keyExprLoop: "rise/masslab/**",
+
+    hostLoop: process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL :  "http://localhost:8000",
+    keyExprLoop: "rise/v0/masslab/**",
     // keyExprLoop: "**",
   }
   /* eslint-enable */
 
+  
   const formik = useFormik({
     validationSchema: validationSchema,
     initialValues: initFormValuesManual,
