@@ -13,9 +13,8 @@ const validationSchema = yup.object({
 
 /* eslint-disable */
 const initFormValuesManual = {
-  // hostSub: "http://10.10.7.2:8000",
-  hostSub: "http://localhost:8000",
-  subscriptionKey: "**",
+  hostSub: process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL :  "http://localhost:8000",
+  subscriptionKey: "rise/v0/masslab/**",
 }
 /* eslint-enable */
 

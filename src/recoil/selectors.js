@@ -772,8 +772,8 @@ export const selSetRudder = selector({
 
     var Http = new XMLHttpRequest()
     // eslint-disable-next-line no-undef
-    console.log("PUT", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL + "/rise/v0/rc_boat/rpc/rudder/combi/set_rudder_angle_pct")
-    
+    console.log("POST", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL + "/rise/v0/rc_boat/rpc/rudder/combi/set_rudder_angle_pct")
+    // eslint-disable-next-line no-undef
     Http.open("POST", process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL + "/rise/v0/rc_boat/rpc/rudder/*/set_rudder_angle_pct", true)
     Http.setRequestHeader("Content-Type", "application/octet-stream")
     Http.send(message)
