@@ -76,7 +76,8 @@ let frameCount = 0
 
 export default function CamFrameKeelson() {
   let router = useRef()
-  const [URLcam, setURLcam] = useState("http://localhost:8000/rise/seahorse/mediamtx/sh-1/compressed_image/axis-1")
+  // eslint-disable-next-line
+  const [URLcam, setURLcam] = useState(  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +"/rise/sea/mediamtx/swain/compressed_image/axis")
   const [intervalFps, setIntervalFps] = useState(null)
   const [loopFps, setLoopFps] = useState(1)
   const [isActive, setIsActive] = useState("")
