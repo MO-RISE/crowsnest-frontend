@@ -9,6 +9,9 @@ import CamCanvas from "./CamCanvas"
 import PlayArrowIcon from "@mui/icons-material/PlayArrow"
 import StopIcon from "@mui/icons-material/Stop"
 import CamFlowMetadata from "./CamFlowMetadata"
+import MetaWIFI from "./MetaWIFI"
+import MetaFlightController from "./MetaFlightController"
+import MetaHWinfo from "./MetaHWinfo"
 
 const URLcameras = [
   "http://localhost:8000/rise/marie/mediamtx/sealog-4/compressed_image/axis",
@@ -76,8 +79,12 @@ let frameCount = 0
 
 export default function CamFrameKeelson() {
   let router = useRef()
-  // eslint-disable-next-line
-  const [URLcam, setURLcam] = useState(  (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +"/rise/sea/mediamtx/swain/compressed_image/axis")
+  /*eslint-disable*/
+  const [URLcam, setURLcam] = useState(
+    (process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL ? process.env.REACT_APP_ZENOH_LOCAL_ROUTER_URL : "http://localhost:8000") +
+      "/rise/sea/mediamtx/swain/compressed_image/axis"
+  )
+  /*eslint-enable*/
   const [intervalFps, setIntervalFps] = useState(null)
   const [loopFps, setLoopFps] = useState(1)
   const [isActive, setIsActive] = useState("")
@@ -226,12 +233,7 @@ export default function CamFrameKeelson() {
             options={URLcameras}
             sx={{ width: 800 }}
             value={URLcam}
-            // onChange={(event, newValue) => {
-            //   console.log("newValue", newValue);
-            //   setURLcam(newValue)
-            // }}
             onInputChange={(event, newValue) => {
-              // console.log("newValue2", newValue);
               setURLcam(newValue)
             }}
             renderInput={params => <TextField {...params} label="URL" size="small" />}
@@ -301,7 +303,12 @@ export default function CamFrameKeelson() {
         <CamCanvas jpegFrame={AAFrame} />
       </Grid>
       <Grid item xs={2}>
-        <CamFlowMetadata metadata={metadata} />
+        <Stack direction="column" justifyContent="flex-start" spacing={2} sx={{margin: "0.2rem"}}>
+          <CamFlowMetadata metadata={metadata} />
+          <MetaWIFI />
+          <MetaFlightController />
+          <MetaHWinfo />
+        </Stack>
       </Grid>
     </Grid>
   )

@@ -17,14 +17,14 @@ export default function CameraStreams() {
           </Paper>
         </Grid>
 
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Paper elevation={3}>
             <Typography variant="h5" sx={{ padding: "0.8rem" }}>
               WebRTC
             </Typography>
             <CamStream ID={"axis1"} />
           </Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
     </>
   )
