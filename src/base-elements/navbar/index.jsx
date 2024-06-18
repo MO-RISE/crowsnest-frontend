@@ -10,6 +10,7 @@ import { appState } from "../../recoil/atoms"
 // Components
 import LeftDrawer from "./LeftDrawer"
 import RightPopOver from "./RightPopover"
+import AlertMenu from "./AlertMenu"
 import { Popover } from "@mui/material"
 import { ObcTopBar as TopBar } from "@oicl/openbridge-webcomponents-react/components/top-bar/top-bar"
 import { ObcBrillianceMenu as BrillianceMenu } from "@oicl/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu"
@@ -23,6 +24,7 @@ export default function NavBar() {
   const [drawerState, setDrawerState] = useState({
     left: false,
     right: false,
+    alertMenu: false,
   })
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -63,6 +65,9 @@ export default function NavBar() {
   const openRight = Boolean(anchorEl)
   const idRight = openRight ? "right-popover" : undefined
 
+  //Alert Popover
+  const [anchorAlertMenu, setAnchorAlertMenu] = React.useState(null)
+
   return (
     <>
       <TopBar
@@ -87,7 +92,7 @@ export default function NavBar() {
           minimized={false}
           onMuteclick={() => console.log("onMuteclick")}
           onAckclick={() => console.log("onAckclick")}
-          onAlertclick={() => console.log("onAlertclick")}
+          onAlertclick={e => setAnchorAlertMenu(e.currentTarget)}
           onMessageclick={() => console.log("onMessageclick")}
         />
       </TopBar>
@@ -142,6 +147,22 @@ export default function NavBar() {
         }}
       >
         <BrillianceMenu className="brilliance" palette={appObj.appActiveColorTheme} onPaletteChanged={handleBrillianceChange} />
+      </Popover>
+
+      <Popover
+        open={!!anchorAlertMenu}
+        anchorEl={anchorAlertMenu}
+        onClose={() => setAnchorAlertMenu(null)}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: 360,
+        }}
+      >
+        <AlertMenu />
       </Popover>
     </>
   )
