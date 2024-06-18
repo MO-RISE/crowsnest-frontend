@@ -15,7 +15,6 @@ import { Popover } from "@mui/material"
 import { ObcTopBar as TopBar } from "@oicl/openbridge-webcomponents-react/components/top-bar/top-bar"
 import { ObcBrillianceMenu as BrillianceMenu } from "@oicl/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu"
 import { ObcAlertTopbarElement as AlertTopbarElementElement } from "@oicl/openbridge-webcomponents-react/components/alert-topbar-element/alert-topbar-element"
-
 import { useLocation } from "react-router-dom"
 import { ROUTE_TO_LABEL } from "../../apps"
 
@@ -93,7 +92,7 @@ export default function NavBar() {
           onMuteclick={() => console.log("onMuteclick")}
           onAckclick={() => console.log("onAckclick")}
           onAlertclick={e => setAnchorAlertMenu(e.currentTarget)}
-          onMessageclick={() => console.log("onMessageclick")}
+          onMessageclick={e => setAnchorAlertMenu(e.currentTarget)}
         />
       </TopBar>
 
