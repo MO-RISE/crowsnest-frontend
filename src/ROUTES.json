@@ -18,5 +18,5 @@
   "DEVICE_SENSORS": "/device_sensors",
   "ROUTE_EDITOR": "/route_editor",
 
-  "ALERT_LIST": "/alert_list"
+  "ALERT_LIST": "/alerts"
 }

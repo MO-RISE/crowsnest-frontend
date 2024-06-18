@@ -17,7 +17,6 @@ import ROUTES from "./ROUTES.json"
 export const APPS = [
   {
     href: ROUTES.HOME,
-
     icon: <IconHome size="24" slot="icon" />,
     leadingIcon: <HomeRoundedIcon slot="leading-icon" />,
     buttonIcon: <HomeRoundedIcon />,
@@ -55,7 +54,6 @@ export const APPS = [
     label: "E-LOOKOUT",
     description: "E-Lookout camera & FPV views for monitoring",
   },
-
   {
     href: ROUTES.REMOTE_CONTROL,
     icon: <IconAutonomous size="24" slot="icon" />,
@@ -106,7 +104,6 @@ export const APP_CONFIG = [
   },
 ]
 
-
 export const PAGES_E_LOOKOUT = [
   {
     href: ROUTES.E_LOOKOUT,
@@ -136,11 +133,16 @@ export const PAGES_E_LOOKOUT = [
     buttonIcon: <IconInfo />,
     label: "Camera Array",
   },
- 
 ]
 
+export const EXCLUDED_FROM_NAVIGATION = [
+  {
+    href: ROUTES.ALERT_LIST,
+    label: "Alerts",
+  },
+]
 
-export const ROUTE_TO_LABEL = [...APPS, ...APP_CONFIG].reduce((acc, cur) => {
+export const ROUTE_TO_LABEL = [...APPS, ...APP_CONFIG, ...PAGES_E_LOOKOUT, ...EXCLUDED_FROM_NAVIGATION].reduce((acc, cur) => {
   acc[cur.href] = cur.label
   return acc
 }, {})

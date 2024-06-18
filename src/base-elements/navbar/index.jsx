@@ -97,22 +97,7 @@ export default function NavBar() {
         />
       </TopBar>
 
-      {/* Menu Left */}
-      {/* <Drawer
-        variant="permanent"
-        sx={{
-          zIndex: 1,
-          width: 240,
-      
-        }}
-        anchor={"left"}
-        open={drawerState["left"]}
-        onClose={toggleDrawer("left", false)}
-        onOpen={toggleDrawer("left", true)}
-      >
-      </Drawer> */}
-
-      {drawerState.left ? <LeftDrawer /> : <> </>}
+      {drawerState.left ? <LeftDrawer /> : <></>}
 
       {/* App Picker Right */}
       <Popover
@@ -149,6 +134,7 @@ export default function NavBar() {
         <BrillianceMenu className="brilliance" palette={appObj.appActiveColorTheme} onPaletteChanged={handleBrillianceChange} />
       </Popover>
 
+      {/* Alert menu */}
       <Popover
         open={!!anchorAlertMenu}
         anchorEl={anchorAlertMenu}
