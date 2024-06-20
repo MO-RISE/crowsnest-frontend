@@ -15,6 +15,8 @@ import { Popover } from "@mui/material"
 import { ObcTopBar as TopBar } from "@oicl/openbridge-webcomponents-react/components/top-bar/top-bar"
 import { ObcBrillianceMenu as BrillianceMenu } from "@oicl/openbridge-webcomponents-react/components/brilliance-menu/brilliance-menu"
 import { ObcAlertTopbarElement as AlertTopbarElementElement } from "@oicl/openbridge-webcomponents-react/components/alert-topbar-element/alert-topbar-element"
+import { ObcNotificationMessageItem as NotificationMessageItem } from "@oicl/openbridge-webcomponents-react/components/notification-message-item/notification-message-item"
+import { ObcAlertIcon } from "@oicl/openbridge-webcomponents-react/components/alert-icon/alert-icon"
 import { useLocation } from "react-router-dom"
 import { ROUTE_TO_LABEL } from "../../apps"
 
@@ -67,6 +69,16 @@ export default function NavBar() {
   //Alert Popover
   const [anchorAlertMenu, setAnchorAlertMenu] = React.useState(null)
 
+  // Change blink value after 1 sec
+  const [blink, setBlink] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBlink(prevCheck => !prevCheck)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <TopBar
@@ -85,15 +97,21 @@ export default function NavBar() {
         <AlertTopbarElementElement
           slot="alerts"
           nAlerts={1}
-          blinkAlarmValue={false}
-          blinkWarningValue={false}
+          blinkAlarmValue={blink}
+          blinkWarningValue={blink}
           showAck={true}
           minimized={false}
           onMuteclick={() => console.log("onMuteclick")}
           onAckclick={() => console.log("onAckclick")}
           onAlertclick={e => setAnchorAlertMenu(e.currentTarget)}
           onMessageclick={e => setAnchorAlertMenu(e.currentTarget)}
-        />
+        >
+          {/* If nAlerts > 0 */}
+          <NotificationMessageItem>
+            <ObcAlertIcon slot="icon" blinkValue={blink} />
+            <div slot="message">This is a message</div>
+          </NotificationMessageItem>
+        </AlertTopbarElementElement>
       </TopBar>
 
       {drawerState.left ? <LeftDrawer /> : <></>}
@@ -147,7 +165,7 @@ export default function NavBar() {
           horizontal: 360,
         }}
       >
-        <AlertMenu />
+        <AlertMenu blink={blink} />
       </Popover>
     </>
   )
