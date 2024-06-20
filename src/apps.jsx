@@ -10,6 +10,7 @@ import { Obi07RoutePlanning as IconRoutePlanning } from "@oicl/openbridge-webcom
 import { Obi07Erbl as IconErbl } from "@oicl/openbridge-webcomponents-react/icons/icon-07-erbl"
 import { Obi03Info as IconInfo } from "@oicl/openbridge-webcomponents-react/icons/icon-03-info"
 import { Obi17ShipSailship as IconSailShip } from "@oicl/openbridge-webcomponents-react/icons/icon-17-ship-sailship"
+import { Obi14Alerts as IconAlerts } from "@oicl/openbridge-webcomponents-react/icons/icon-14-alerts"
 import InsightsRoundedIcon from "@mui/icons-material/InsightsRounded"
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded"
 import ROUTES from "./ROUTES.json"
@@ -102,6 +103,13 @@ export const APP_CONFIG = [
     buttonIcon: <SettingsIcon />,
     label: "APP Settings",
   },
+  {
+    href: ROUTES.ALERT_LIST,
+    icon: <IconAlerts slot="icon" />,
+    leadingIcon: <IconAlerts slot="leading-icon" />,
+    buttonIcon: <IconAlerts />,
+    label: "Alerts",
+  },
 ]
 
 export const PAGES_E_LOOKOUT = [
@@ -135,14 +143,7 @@ export const PAGES_E_LOOKOUT = [
   },
 ]
 
-export const EXCLUDED_FROM_NAVIGATION = [
-  {
-    href: ROUTES.ALERT_LIST,
-    label: "Alerts",
-  },
-]
-
-export const ROUTE_TO_LABEL = [...APPS, ...APP_CONFIG, ...PAGES_E_LOOKOUT, ...EXCLUDED_FROM_NAVIGATION].reduce((acc, cur) => {
+export const ROUTE_TO_LABEL = [...APPS, ...APP_CONFIG, ...PAGES_E_LOOKOUT].reduce((acc, cur) => {
   acc[cur.href] = cur.label
   return acc
 }, {})
