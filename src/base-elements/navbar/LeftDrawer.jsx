@@ -5,14 +5,14 @@ import { ObcNavigationItem as NavigationItem } from "@oicl/openbridge-webcompone
 import { Obi02ChevronRight as IconChevronRight } from "@oicl/openbridge-webcomponents-react/icons/icon-02-chevron-right"
 import { Obi02ChevronLeft as IconChevronLeft } from "@oicl/openbridge-webcomponents-react/icons/icon-02-chevron-left"
 import LogoCrowsnest from "../../resources/crowsnest.png"
-import { APPS, APP_CONFIG, PAGES_E_LOOKOUT } from "../../apps"
+import { APP_CONFIG, PAGES_E_LOOKOUT } from "../../apps"
 import { ObcContextMenu as ContextMenu } from "@oicl/openbridge-webcomponents-react/components/context-menu/context-menu"
 import { ObcIconButton as IconButton } from "@oicl/openbridge-webcomponents-react/components/icon-button/icon-button"
 import { useNavigate } from "react-router-dom"
 
 export default function LeftDrawer() {
   const navigate = useNavigate()
-  const [isFullWidth, setIsFullWidth] = useState(false)
+  const [isFullWidth, setIsFullWidth] = useState(true)
 
   const toggleWidth = () => {
     setIsFullWidth(!isFullWidth)
@@ -20,12 +20,10 @@ export default function LeftDrawer() {
 
   return (
     <>
-      {!isFullWidth ? (
-        <Box sx={{ width: "15px", position: "fixed", height: "100%", zIndex: 900 }}>
-          <NavigationMenu styles={{ width: "50px" }}>
-            <NavigationItem slot="main" label={""} checked={false}></NavigationItem>
-
-            <NavigationItem slot="main" label={""} checked={false} onClick={toggleWidth}>
+      {isFullWidth ? (
+        <Box sx={{ position: "fixed", paddingTop: "48px", height: "100%", zIndex: 900 }}>
+          <NavigationMenu>
+            <NavigationItem slot="main" label="" checked={false} onClick={toggleWidth}>
               <IconChevronLeft size="24" slot="icon" />
             </NavigationItem>
 
@@ -42,18 +40,6 @@ export default function LeftDrawer() {
                 </NavigationItem>
               ))}
 
-            {/* {APPS.map(app => (
-              <NavigationItem
-                slot="main"
-                key={app.label}
-                onClick={() => navigate(app.href)}
-                label={app.label}
-                checked={app.href === window.location.pathname}
-              >
-                {app.icon}
-              </NavigationItem>
-            ))} */}
-
             {APP_CONFIG.map(cfg => (
               <NavigationItem
                 slot="footer"
@@ -69,11 +55,15 @@ export default function LeftDrawer() {
           </NavigationMenu>
         </Box>
       ) : (
-        <Box sx={{ width: "15px", position: "fixed", height: "100%", zIndex: 900 }}>
+        <Box
+          sx={{
+            position: "fixed",
+            paddingTop: "48px",
+            height: "100%",
+            zIndex: 900,
+          }}
+        >
           <ContextMenu>
-            {/* First for Empty space */}
-            <IconButton />
-
             <IconButton variant="normal" size="regular" onClick={toggleWidth}>
               <IconChevronRight size="24" />
             </IconButton>
