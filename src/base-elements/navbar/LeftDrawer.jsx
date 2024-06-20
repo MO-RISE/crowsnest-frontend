@@ -20,7 +20,7 @@ export default function LeftDrawer() {
 
   return (
     <>
-      {isFullWidth ? (
+      {!isFullWidth ? (
         <Box sx={{ width: "15px", position: "fixed", height: "100%", zIndex: 900 }}>
           <NavigationMenu styles={{ width: "50px" }}>
             <NavigationItem slot="main" label={""} checked={false}></NavigationItem>
@@ -29,21 +29,18 @@ export default function LeftDrawer() {
               <IconChevronLeft size="24" slot="icon" />
             </NavigationItem>
 
-
             {window.location.pathname.includes("e_lookout") &&
               PAGES_E_LOOKOUT.map(app => (
                 <NavigationItem
-                slot="main"
-                key={app.label}
-                onClick={() => navigate(app.href)}
-                label={app.label}
-                checked={app.href === window.location.pathname}
-              >
-                {app.icon}
-              </NavigationItem>
+                  slot="main"
+                  key={app.label}
+                  onClick={() => navigate(app.href)}
+                  label={app.label}
+                  checked={app.href === window.location.pathname}
+                >
+                  {app.icon}
+                </NavigationItem>
               ))}
-
-      
 
             {/* {APPS.map(app => (
               <NavigationItem
@@ -117,5 +114,5 @@ export default function LeftDrawer() {
         </Box>
       )}
     </>
-  );
+  )
 }
